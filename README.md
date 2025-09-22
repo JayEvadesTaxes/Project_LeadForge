@@ -8,8 +8,8 @@ I am a first year CS Major student and I have no idea what i'm doing.
 Download it, branch it, go crazy ¯\\__(ツ)_/¯
 
 # LATEST RELEASE:
-Github: https://github.com/JayEvadesTaxes/Project_LeadForge/archive/refs/tags/v0.5-prototype.zip   
-Gdrive: https://drive.google.com/drive/folders/1LqXpvs22sH0LSvIpUuCshzca9cXy7Y9j?usp=sharing (alt)
+Github(zip): https://github.com/JayEvadesTaxes/Project_LeadForge/archive/refs/tags/v0.5.1(patch)-prototype.zip   
+Gdrive(folder): https://drive.google.com/drive/folders/1HdA8XQC9nTmIW7I2DYTWfU7cvPlDombs?usp=sharing
 
 # HOW DO I RUN THIS PROJECT?
 
