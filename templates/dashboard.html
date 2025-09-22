@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<!--
+╔══ ❀•°❀°•❀ ══╗
+      HEAD
+╚══ ❀•°❀°•❀ ══╝
+-->
+<head>
+    <title>Manufacturing Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<!--
+╔══ ❀•°❀°•❀ ══╗
+      BODY
+╚══ ❀•°❀°•❀ ══╝
+-->
+<body>
+
+  <header class = "header">
+    <h2>Production Orders</h2>
+  </header>
+
+  <table>
+    <tr>
+      <th>Product Name</th>
+      <th>Amount</th>
+      <th>Status</th>
+    </tr>
+    {% for order in orders %}
+    <tr>
+      <td>{{ order.productName }}</td>
+      <td>{{ order.productAmount }}</td>
+      <td class="status {{ order.status | lower | replace(' ', '-') }}">{{ order.status }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <div class="char-container">
+    <canvas id = "donutChart"></canvas>
+  </div>
+
+</body>
+
+<!--
+╔══ ❀•°❀°•❀ ══╗
+    JAVASCRIPT (WIP) Doughnut Chart
+╚══ ❀•°❀°•❀ ══╝
+
+<script>
+  const ctx = document.getElementById('donutChart').getContext('2d');
+  const donutChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ["Test Value 1","Test Value 2"],
+      datasets: [{
+        data: [54, 49, 44, 23, 14], // Example values in millions of hectoliters
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.7)',   // Value1
+          'rgba(54, 162, 235, 0.7)',   // Value2
+          'rgba(255, 182, 193, 0.7)',  // Value3
+          'rgba(75, 192, 192, 0.7)',   // Value4
+          'rgba(0, 100, 0, 0.7)'       // Value5
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'bottom'
+        },
+        title: {
+          display: true,
+          text: 'Doughnut Chart Testing'
+        }
+      }
+    }
+  });
+</script>
+-->
+
+</html>

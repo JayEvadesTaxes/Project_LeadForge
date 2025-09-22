@@ -1,0 +1,49 @@
+[9/4/25] v0.1
+-Added 3 class objects 
+    (WorkCenter, RoutingSteps, ProductionOrder)
+-Devlog created
+-Basic Silicon Process added for testing purposes
+    (based on the game "Mindustry" and it's Silicon Press Factories)
+
+[9/5/25] v0.2
+https://waferpro.com/what-is-a-silicon-wafer/?srsltid=AfmBOooGrLwLBex0Lr9PfdZU3oRYy_Z4UP0cKKdeknv8OjE8fSRjGC1e
+-Replaced "Silicon Process" with "Silicon Wafer Process"
+
+[9/6/25] v0.3
+https://miro.com/app/board/uXjVJL1UXZg=/?share_link_id=151147881374
+-Flowchart Created
+-Fixed Manufacturing Data not finding json file directory when the program is ran on a tunnel.
+    (The primary issue was the code was running in a different directory via tunnels and breaks relative paths.)
+    (Fixed by turing it into an absolute path instead.)
+-clear Terminal now works for both Windows and Linux/macOS operating systems
+-Transfered all classes away from "main.py" into "models.py"
+-Transfered Silicon Wafer Work Centers and Routing Steps into "silicon_wafer_data.py"
+-Added Graphics Processing Unit Process (GPU, NOT THE GRAPHICS CARD)
+-Seperated all processing data into JSON files in Project_LeadForge\json_files
+-Removed Herobrine
+
+[9/7/25] v0.4
+-Added tqdm library for a visual loading bar when processing amount of orders
+    (It's actually unecessary and just there for the cool-look factor)
+-Project Leadforge title-screen
+-Two new linebreaks in the code: linebreakStart and linebreakEnd
+-Output now shows more information
+    >Each step now displays how long they take and their total lead time when accounting for total units
+    >Cost simulation improved and now shows the Costs per Minute and Estimated Costs
+    >Now outputs a JSON file at the end of the program for debugging purposes
+-Now outputs it in an HTML web via the Flask library and Jinja2 (this took forever)
+    > http://127.0.0.1:5000/
+-Status on Production Orders for the HTML: NIE(Not in Execution), Active, On Hold, Completed, Discarded, Closed
+-Removed Herobrine
+
+[9/22/25] v0.5
+-Removed Doughnut Chart (it's code is only commented out as it may still be used again in future updates later)
+-Moved the credits that was originally at the top of devlog.txt to it's own seperate txt file in credits.txt
+-Production order list and JSON output removed from debug
+-Added version number below title upon start of program
+-renamed "devlog.txt" to "update-log.txt"
+-Compiled "main.py" into "LeadForge.exe", now you can run the program with just a doubleclick!
+-code is now open-source
+-Removed Herobrine
+
+Over 500+ Lines of code! :O
