@@ -9,4 +9,9 @@ Download it, branch it, go crazy ¯\\__(ツ)_/¯
 
 
 # LATEST RELEASE:
-https://github.com/JayEvadesTaxes/Project_LeadForge/archive/refs/tags/v0.5-prototype.zip
+Github: https://github.com/JayEvadesTaxes/Project_LeadForge/archive/refs/tags/v0.5-prototype.zip
+Gdrive: https://drive.google.com/drive/folders/1LqXpvs22sH0LSvIpUuCshzca9cXy7Y9j?usp=sharing
+
+# CREDITS:
+Scripter: JayEvadesTaxes
+Tester: Nexiset205
