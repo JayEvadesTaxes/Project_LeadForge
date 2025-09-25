@@ -1,0 +1,12 @@
+[
+  {
+    "product": "Silicon Wafer",
+    "amount": 12,
+    "status": "Active"
+  },
+  {
+    "product": "GPU (Graphics Processing Unit)",
+    "amount": 8,
+    "status": "NIE"
+  }
+]

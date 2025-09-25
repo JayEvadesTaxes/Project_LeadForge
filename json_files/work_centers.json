@@ -1,0 +1,20 @@
+[
+  {
+    "id": "CW01",
+    "name": "Euv Topology",
+    "operationType": "Production",
+    "maxCapacity": 20
+  },
+  {
+    "id": "CW02",
+    "name": "Something Else",
+    "operationType": "Packaging",
+    "maxCapacity": 10
+  },
+  {
+    "id": "CW03",
+    "name": "Auto-Qualifiers",
+    "operationType": "Quality Control",
+    "maxCapacity": 300
+  }
+]
