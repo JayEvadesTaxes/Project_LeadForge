@@ -1,0 +1,13 @@
+[
+  {
+    "product": "Silicon Wafer",
+    "amount": 5,
+    "status": "Active",
+    "routingSteps": [
+      "CA01",
+      "CA02",
+      "CA03",
+      "CA04"
+    ]
+  }
+]

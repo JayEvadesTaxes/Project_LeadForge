@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<!--
+╔══ ❀•°❀°•❀ ══╗
+      HEAD
+╚══ ❀•°❀°•❀ ══╝
+-->
+<head>
+    <title>Manufacturing Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<!--
+╔══ ❀•°❀°•❀ ══╗
+      BODY
+╚══ ❀•°❀°•❀ ══╝
+-->
+<nav class="navbar">
+  <ul>
+    <li><a href="/">Production Orders</a></li>
+    <li><a href="/create-routing">Routing Steps</a></li>
+    <li><a href="/create-workcenter">Work Centers</a></li>
+  </ul>
+</nav>
+
+    <header class ='header'>
+        <h2>Create New Work Center</h2>
+    </header>
+
+    <form action="/submit-workcenter" method="POST">
+    <label for="centerId">Work Center ID:</label>
+    <input type="text" name="centerId" required><br><br>
+
+    <label for="centerName">Work Center Name:</label>
+    <input type="text" name="centerName" required><br><br>
+    
+    <label for="operationType">Operation Type:</label>
+    <input type="text" name="operationType" required><br><br>
+
+    <label for="maxCapacity">Max Capacity:</label>
+    <input type="number" name="maxCapacity" min="1" required><br><br>
+
+    <button type="submit">Add Work Center</button>
+    </form>
+
+<hr>
+
+    <header class = 'header'>
+        <h2>Existing Work Centers</h2>
+    </header>
+
+    <form action="/remove-workcenters" method="POST">
+    <button type="submit">Remove Selected Work Centers</button>
+    <table>
+        <tr>
+        <th>Select</th>
+        <th>Work Center Name</th>
+        <th>Work Center ID</th>
+        <th>Operation Type</th>
+        <th>Max Capacity</th>
+        </tr>
+        {% for center in centers %}
+        <tr>
+        <td><input type="checkbox" name="remove_center_ids" value="{{ loop.index0 }}"style="transform: scale(1.5); margin: 6px;"></td>
+        <td>{{ center.name }}</td>
+        <td>{{ center.id }}</td>
+        <td>{{ center.operationType }}</td>
+        <td>{{ center.maxCapacity }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </form>

@@ -1,0 +1,26 @@
+[
+  {
+    "stepNumber": "CA01",
+    "operationTime": "20",
+    "operationUnit": "minutes",
+    "workCenterID": "CR01"
+  },
+  {
+    "stepNumber": "CA02",
+    "operationTime": "2",
+    "operationUnit": "hours",
+    "workCenterID": "CR01"
+  },
+  {
+    "stepNumber": "CA03",
+    "operationTime": "12",
+    "operationUnit": "minutes",
+    "workCenterID": "CR02"
+  },
+  {
+    "stepNumber": "CA04",
+    "operationTime": "59",
+    "operationUnit": "seconds",
+    "workCenterID": "CW02"
+  }
+]
