@@ -8,8 +8,8 @@ I am a first year CS Major student and I have no idea what i'm doing.
 Download it, branch it, go crazy ¯\\__(ツ)_/¯
 
 # LATEST RELEASE:
-Github(zip): https://github.com/JayEvadesTaxes/Project_LeadForge/archive/refs/tags/v0.5.1(patch)-prototype.zip   
-Gdrive(folder): https://drive.google.com/drive/folders/1e8hHmRBCLA41AG96R0uWjrHGs4SyrJOw?usp=sharing
+Github(zip): https://github.com/JayEvadesTaxes/Project_LeadForge/archive/refs/tags/v0.7-prototype.zip 
+Gdrive(folder): (Temporarily disabled)
 
 # HOW DO I RUN THIS PROJECT?
 
@@ -28,7 +28,8 @@ Gdrive(folder): https://drive.google.com/drive/folders/1e8hHmRBCLA41AG96R0uWjrHG
 ### Step 5: Double click "LeadForge.exe". This will open a command prompt and run the code.  
 <img width="1717" height="906" alt="image" src="https://github.com/user-attachments/assets/9a4f5d2f-22a2-42ff-9d4b-2a2067b70192" />
 
-### Step 6: You may **alternativley** also open the table website by pasting this in your web browser: http://127.0.0.1:5000/  
+### Step 6: You may **alternativley** also open the table website by pasting this in your web browser: http://127.0.0.1:5000/   
+note: in v0.7 and above, this will automatically open the HTML site for you.  
 
 # WHAT THIS PROJECT DOES
 The goal of this project is too simulate **basic manufacturing master data for routing and work centers**.
