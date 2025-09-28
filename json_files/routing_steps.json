@@ -1,0 +1,38 @@
+[
+  {
+    "stepNumber": "CA01",
+    "operationTime": "20",
+    "operationUnit": "minutes",
+    "workCenterID": "CR01"
+  },
+  {
+    "stepNumber": "CA02",
+    "operationTime": "2",
+    "operationUnit": "hours",
+    "workCenterID": "CR01"
+  },
+  {
+    "stepNumber": "CA03",
+    "operationTime": "12",
+    "operationUnit": "minutes",
+    "workCenterID": "CR02"
+  },
+  {
+    "stepNumber": "CA04",
+    "operationTime": "10",
+    "operationUnit": "minutes",
+    "workCenterID": "CR02"
+  },
+  {
+    "stepNumber": "CA05",
+    "operationTime": "1",
+    "operationUnit": "hours",
+    "workCenterID": "CR02"
+  },
+  {
+    "stepNumber": "CA06",
+    "operationTime": "50",
+    "operationUnit": "minutes",
+    "workCenterID": "CR03"
+  }
+]

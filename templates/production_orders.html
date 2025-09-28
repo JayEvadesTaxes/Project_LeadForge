@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<!--
+╔══ ❀•°❀°•❀ ══╗
+      HEAD
+╚══ ❀•°❀°•❀ ══╝
+-->
+<head>
+    <title>Manufacturing Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<!--
+╔══ ❀•°❀°•❀ ══╗
+      BODY
+╚══ ❀•°❀°•❀ ══╝
+-->
+<nav class="navbar">
+  <ul>
+    <li><a href="/">Production Orders</a></li>
+    <li><a href="/create-routing">Routing Steps</a></li>
+    <li><a href="/create-workcenter">Work Centers</a></li>
+  </ul>
+</nav>
+
+
+<body>
+
+  <header class = "header">
+    <h2>Create New Production Order</h2>
+  </header>
+
+  <form action="/submit-order" method="POST">
+
+    <label for="productName">Product Name:</label>
+    <input type="text" name="productName" required><br><br>
+
+    <label for="amount">Amount:</label>
+    <input type="number" name="amount" min="1" step="1" required><br><br>
+
+    <label for="status">Status:</label>
+    <select name="status">
+      <option value="Active">Active</option>
+      <option value="Delayed">Delayed</option>
+      <option value="On Hold">On Hold</option>
+      <option value="Closed">Closed</option>
+      <option value="Discarded">Discarded</option>
+      <option value="NIE">NIE</option>
+    </select><br><br>
+
+    <details style="margin-bottom: 16px;">
+      <summary style="font-size: 1.1rem; font-weight: bold; cursor: pointer;">
+        Select Routing Steps
+      </summary>
+      <div class="routing-checkboxes" style="margin-top: 10px;">
+        {% for step in routing_steps %}
+          <label style="display: block; margin-bottom: 8px;">
+            <input type="checkbox" name="routingSteps" value="{{ step.stepNumber }}">
+            <strong>Step {{ step.stepNumber }}</strong> —
+            {{ step.operationTime }} {{ step.operationUnit }},
+            <em>Work Center {{ step.workCenterID }}: {{ step.workCenterName }}</em>
+          </label>
+        {% endfor %}
+      </div>
+    </details>
+
+    
+    
+    <button type="submit">Submit Order</button>
+  </form>
+
+  <header class="header">
+    <h2>Production Orders</h2>
+  </header>
+
+  <form action="/remove-orders" method="POST">
+    <br>
+    <button type="submit">Remove Selected Orders</button>
+    <table>
+      <tr>
+        <th></th>
+        <th>Routing Steps</th>
+        <th>Product Name</th>
+        <th>Amount</th>
+        <th>Status</th>
+      </tr>
+
+      {% for order in orders %}
+      <tr>
+        <td><input type="checkbox" name="remove_ids" value="{{ loop.index0 }}"style="transform: scale(1.5); margin: 6px;"></td>
+        <td>
+          <details>
+            <summary style="cursor: pointer; font-weight: bold;">View Steps</summary>
+            <ul style="margin-top: 6px;">
+              {% for step in order.routingSteps %}
+                <li>Step {{ step }}</li>
+              {% endfor %}
+            </ul>
+          </details>
+        </td>
+        <td>{{ order.product }}</td>
+        <td>{{ order.amount }}</td>
+        <td class="status {{ order.status | lower | replace(' ', '-') }}">{{ order.status }}</td>
+      </tr>
+      {% endfor %}
+      
+    </table>
+  </form>
+
+<div class="char-container">
+  <canvas id="donutChart"></canvas>
+</div>
+
+</body>
+<!--
+╔══ ❀•°❀°•❀ ══╗
+    JAVASCRIPT (WIP) Doughnut Chart
+╚══ ❀•°❀°•❀ ══╝
+
+<script>
+  const ctx = document.getElementById('donutChart').getContext('2d');
+  const donutChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ["Test Value 1","Test Value 2"],
+      datasets: [{
+        data: [54, 49, 44, 23, 14], // Example values in millions of hectoliters
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.7)',   // Value1
+          'rgba(54, 162, 235, 0.7)',   // Value2
+          'rgba(255, 182, 193, 0.7)',  // Value3
+          'rgba(75, 192, 192, 0.7)',   // Value4
+          'rgba(0, 100, 0, 0.7)'       // Value5
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'bottom'
+        },
+        title: {
+          display: true,
+          text: 'Doughnut Chart Testing'
+        }
+      }
+    }
+  });
+</script>
+-->
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<!--
+╔══ ❀•°❀°•❀ ══╗
+      HEAD
+╚══ ❀•°❀°•❀ ══╝
+-->
+<head>
+    <title>Manufacturing Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<!--
+╔══ ❀•°❀°•❀ ══╗
+      BODY
+╚══ ❀•°❀°•❀ ══╝
+-->
+
+<nav class="navbar">
+  <ul>
+    <li><a href="/">Production Orders</a></li>
+    <li><a href="/create-routing">Routing Steps</a></li>
+    <li><a href="/create-workcenter">Work Centers</a></li>
+  </ul>
+</nav>
+
+<body>
+
+    <header class = "header">
+        <h2>Create New Routing Step</h2>
+    </header>
+
+    <form action="/submit-routing" method="POST">
+        <label for="stepNumber">Step Number:</label>
+        <input type="text" name="stepNumber" min = "1" step = "1" required><br><br>
+
+        <label for="operationTime">Operation Time:</label>
+        <input type="number" name="operationTime" min="1" step = "1" required>
+        <select name="operationUnit">
+            <option value="seconds">Seconds</option>
+            <option value="minutes">Minutes</option>
+            <option value="hours">Hours</option>
+        </select><br><br>
+
+        <label for="workCenterID">Work Center:</label>
+        <select name="workCenterID" required>
+            {% for center in centers %}
+            <option value="{{ center.id }}">{{ center.id }} — {{ center.name }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <button type="submit">Add Routing Step</button>
+    </form>
+
+<hr>
+
+    <header class="header">
+        <h2>Existing Routing Steps</h2>
+    </header>
+
+    <form action="/remove-routing" method="POST">
+    <button type="submit">Remove Selected Routing Steps</button>
+    <table>
+        <tr>
+            <th>Select</th>
+            <th>Step Number</th>
+            <th>Operation Time</th>
+            <th>Work Center ID</th>
+            <th>Work Center Name</th>
+        </tr>
+        {% for step in steps %}
+        <tr>
+            <td><input type="checkbox" name="remove_routing_ids" value="{{ loop.index0 }}" style="transform: scale(1.5); margin: 6px;"></td>
+            <td>{{ step.stepNumber }}</td>
+            <td>{{ step.operationTime }} {{step.operationUnit}}</td>
+            <td>{{ step.workCenterID }}</td>
+            <td>
+                {% set match = centers | selectattr("id", "equalto", step.workCenterID) | list %}
+                {{ match[0].name if match and match[0] is defined else "Unknown" }}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    </form>
+
+    
+</body>
+</html>
