@@ -1,0 +1,20 @@
+[
+  {
+    "id": "CR01",
+    "name": "EUV Lithogrpahy",
+    "operationType": "Patterning",
+    "maxCapacity": 2
+  },
+  {
+    "id": "CR02",
+    "name": "Chemical Vapor Deposition",
+    "operationType": "Depositioning",
+    "maxCapacity": 5
+  },
+  {
+    "id": "CR03",
+    "name": "Atomic Layer Deposition",
+    "operationType": "Depositioning",
+    "maxCapacity": 6
+  }
+]

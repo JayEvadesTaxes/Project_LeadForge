@@ -1,18 +1,49 @@
 
 .header {
-  background-color: rgba(255, 255, 255, 0.85); /* semi-transparent white */
+  background-color: rgba(255, 255, 255, 0.75); /* semi-transparent white */
   color: #333; /* dark text for contrast */
   padding: 20px;
   text-align: center;
   border-bottom: 2px solid #444;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin: 20px auto;
 }
 
+.navbar ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+  background-color: #f0f0f0;
+  border-bottom: 2px solid #ccc;
+}
+
+.navbar li a {
+  text-decoration: none;
+  padding: 10px 20px;
+  display: block;
+  color: #333;
+  font-weight: bold;
+}
+
+.navbar li a:hover {
+  background-color: #ddd;
+  border-radius: 8px;
+}
+html, body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
     padding: 20px;
 }
 .tile-grid {
@@ -35,6 +66,34 @@ body {
     margin-top: 10px;
 }
 
+details summary {
+  background-color: #f0f0f0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+details[open] summary {
+  background-color: #e0e0e0;
+}
+.routing-checkboxes label {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+}
+.routing-checkboxes input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-right: 8px;
+}
+
+.step-tag {
+  background-color: #eee;
+  padding: 2px 6px;
+  margin-right: 4px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
 /*
 ╔══ ❀•°❀°•❀ ══╗
       TABLE
@@ -50,13 +109,22 @@ table {
   border-radius: 8px;
   overflow: hidden;
 }
+
+table th {
+  background-color: #949494; 
+  color: #333333;          
+  font-weight: bold;
+  text-align: center;
+}
+
 th, td {
   padding: 12px 16px;
   border-bottom: 1px solid #ddd;
   vertical-align: middle;
+  border: 1px solid #ccc;
 
 th:nth-child(1), td:nth-child(1) {
-  text-align: left;
+  text-align: center;
   width: 40%;
 }
 
@@ -73,7 +141,7 @@ tr {
   height: 60px;
 }
 tr:hover {
-  background-color: #f9f9f9;
+  background-color: #fd9c9c;
 }
 }
 th:hover {

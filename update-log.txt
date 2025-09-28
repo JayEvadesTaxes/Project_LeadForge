@@ -51,4 +51,35 @@ https://miro.com/app/board/uXjVJL1UXZg=/?share_link_id=151147881374
 -Source code is now available on GitHub!
 -Removed Herobrine
 
-Over 500+ Lines of code! :O
+[9/25/25] v0.6
+-Create New Production Order as a UserInput now available
+-Moved JSON routing steps to a seperate folder caleld "RoutingSteps" (This will be used later)
+-Reworking Production Order System and JSON system (I gotta update the flowcharts again, FUCKKKKKK)
+-Exe File removed temporarily until v0.7
+-Removed Herobrine
+
+[9/25/25] Patch v0.6.1
+-I'm aware that the previous version is bugged and the program can't run, this patch fixes it.
+-Fixed bug errors when running the program (should run as intended)
+-Moved all information into the HTML UI now (Info will still show up in the terminal such as adding or removing work centers in future updates)
+-HTML Cleanup, somewhat more user friendly
+-New HTML Tabs: "Create Routing Steps" & "Create Work Centers"
+-Fixed background image by keeping it fixed to the screen
+-Creating a routing step now requires a work center to be created
+-Production Orders don't have any relation to Routing Centers or Work Centers yet
+-Removed Herobrine
+
+[9/26/25] v0.6.2
+-Production Orders now require Routing Steps
+Orders are no longer standalone - they must be linked to selected routing steps.
+-Routing step selection overhaul
+Replaced dropdown with a checkbox system inside a collapsible dropdown container.
+Each step also displays the Step Number, Operation Time,Unit, Work Center ID and Name.
+-Routing steps display per order
+Every production order now includes a collaposible dropdown that shows the routing
+steps that were selected
+-Slightly refined table layout
+-Terminal now tells you what production orders have been added and removed.
+There are plans in the future to allow the same thing for creating routing steps
+and creating work centers and displaying them in the terminal in future updates.
+-Removed Herobrine
