@@ -1,24 +1,11 @@
 [
   {
-    "product": "Silicon Wafer",
-    "amount": 5,
+    "product": "Sliksong",
+    "amount": 6,
     "status": "Active",
     "routingSteps": [
-      "CA01",
-      "CA02",
-      "CA03",
-      "CR04"
-    ]
-  },
-  {
-    "product": "GPU",
-    "amount": 6,
-    "status": "On Hold",
-    "routingSteps": [
-      "CA01",
-      "CA02",
-      "CA04",
-      "CA06"
+      "CR01",
+      "CR02"
     ]
   }
 ]
