@@ -80,22 +80,41 @@ def dashboard():
                 match['workCenterName'] = wc_match['name'] if wc_match else "Unknown"
                 detailed_steps.append(match)
 
-        try:
-            total_time = sum(float(s.get('operationTime', 0)) for s in detailed_steps)
-        except ValueError:
-            total_time = 0
+        total_seconds = 0
+
+        for s in detailed_steps:
+            time = float(s.get('operationTime', 0))
+            unit = s.get('operationUnit', '').lower()
+
+            if unit in ['second', 'seconds']:
+                total_seconds += time
+            elif unit in ['minute', 'minutes']:
+                total_seconds += time * 60
+            elif unit in ['hour', 'hours']:
+                total_seconds += time * 3600
+            else:
+                print(f"⚠️ Unknown unit: {unit}")
+
+        # Convert total_seconds to hours, minutes, seconds
+        hours = int(total_seconds // 3600)
+        minutes = int((total_seconds % 3600) // 60)
+        seconds = int(total_seconds % 60)
+
+        # Format as a readable string
+        formatted_time = f"{hours}h {minutes}m {seconds}s"
+
 
         order = {
             "product": o['product'],
             "amount": o['amount'],
             "status": o['status'],
             "routingSteps": detailed_steps,
-            "totalTime": total_time
+            "totalTime": formatted_time
         }
 
         dynamic_orders.append(order)
 
-    return render_template('production_orders.html', orders=dynamic_orders, data=metrics)
+    return render_template('production_orders.html', orders=dynamic_orders, data=metrics, routing_steps = all_steps)
 
 
 
@@ -400,7 +419,7 @@ print("""
 /____/\__/\_,_/\_,_/_/  \___/_/  \_, /\__/ 
                                 /___/     
 
-        [version 0.7]          
+        [version 0.7.1]          
 """)
 sleep(1)
 
@@ -422,4 +441,4 @@ print(RESET)
 if __name__ == '__main__':
     url = "http://127.0.0.1:5000/"
     webbrowser.open_new_tab(url)
-    app.run(debug=True)
+    app.run(debug=False, use_reloader = False)
