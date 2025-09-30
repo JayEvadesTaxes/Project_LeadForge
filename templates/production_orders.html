@@ -84,20 +84,45 @@
         <th>Amount</th>
         <th>Status</th>
       </tr>
-
       {% for order in orders %}
       <tr>
         <td><input type="checkbox" name="remove_ids" value="{{ loop.index0 }}"style="transform: scale(1.5); margin: 6px;"></td>
+        
         <td>
+          {% if order.routingSteps and order.routingSteps | length > 0 %}
           <details>
             <summary style="cursor: pointer; font-weight: bold;">View Steps</summary>
-            <ul style="margin-top: 6px;">
-              {% for step in order.routingSteps %}
-                <li>Step {{ step }}</li>
-              {% endfor %}
-            </ul>
+            <div style="margin-top: 6px;">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Step</th>
+                    <th>Time</th>
+                    <th>Unit</th>
+                    <th>Work Center</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for step in order.routingSteps %}
+                  <tr>
+                    <td>{{ step.stepNumber }}</td>
+                    <td>{{ step.operationTime }}</td>
+                    <td>{{ step.operationUnit }}</td>
+                    <td>{{ step.workCenterName }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <p><strong>Total Time:</strong> {{ order.totalTime }} {{ order.routingSteps[0].operationUnit }}</p>
+            </div>
           </details>
+          {% else %}
+            <em>No routing steps found</em>
+          {% endif %}
         </td>
+
+
+
         <td>{{ order.product }}</td>
         <td>{{ order.amount }}</td>
         <td class="status {{ order.status | lower | replace(' ', '-') }}">{{ order.status }}</td>

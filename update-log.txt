@@ -83,10 +83,3 @@ steps that were selected
 There are plans in the future to allow the same thing for creating routing steps
 and creating work centers and displaying them in the terminal in future updates.
 -Removed Herobrine
-
-[9/28/25] v0.7
--Improved terminal logs, now displays the creation and removal of Routing Steps and Work Centers.
--Re-added exe file
--HTML now automatically opens when the program is opened
--Certain bug fixes that will take too long to write down here
--Removed Herobrine

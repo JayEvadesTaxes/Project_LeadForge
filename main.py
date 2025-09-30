@@ -13,9 +13,11 @@ from models import WorkCenter, RoutingSteps, ProductionOrder
 #╔══ ❀•°❀°•❀ ══╗
 #     COLORS
 #╚══ ❀•°❀°•❀ ══╝
+
 GREEN = '\033[92m'
 RED = '\033[91m'
 RESET = '\033[0m' 
+
 #╔══ ❀•°❀°•❀ ══╗
 #   FLASK SETUP
 #╚══ ❀•°❀°•❀ ══╝
@@ -34,58 +36,67 @@ workcenter_dir = os.path.join(base_path, 'json_files', 'work_centers.json')
 #Application
 app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 
-
-#Dashboard and Production Orders
-@app.route('/dashboard')
+#Production Orders and Dashboard
+@app.route('/')
 def dashboard():
     metrics = {
         "defective_units": 3,
         "yield_rate": 97.5
     }
 
+    # Load production orders
     try:
         with open(orders_dir) as f:
             raw_orders = json.load(f)
-            dynamic_orders = []
-
-            for o in raw_orders:
-                # Reconstruct RoutingSteps objects from step names
-                routing_steps = []
-                for step_name in o.get('routing_steps', []):
-                    routing_steps.append(RoutingSteps(step_name))  # or use a lookup if needed
-
-                order = ProductionOrder(
-                    o['product'],
-                    o['amount'],
-                    o['status'],
-                    o.get('routing_steps', [])
-                )
-                dynamic_orders.append(order)
-
     except Exception as e:
         print(f"Error loading orders: {e}")
-        dynamic_orders = productionOrderList
+        raw_orders = []
+
+    # Load routing steps
+    try:
+        with open(routing_steps_dir) as f:
+            all_steps = json.load(f)
+    except Exception as e:
+        print(f"Error loading routing steps: {e}")
+        all_steps = []
+
+    # Load work centers
+    try:
+        with open(workcenter_dir) as f:
+            work_centers = json.load(f)
+    except Exception as e:
+        print(f"Error loading work centers: {e}")
+        work_centers = []
+
+    # Enrich orders with detailed routing steps and total time
+    dynamic_orders = []
+    for o in raw_orders:
+        detailed_steps = []
+
+        for step_name in o.get('routingSteps', []):
+            match = next((s for s in all_steps if s['stepNumber'] == step_name), None)
+            if match:
+                wc_match = next((wc for wc in work_centers if wc['id'] == match['workCenterID']), None)
+                match['workCenterName'] = wc_match['name'] if wc_match else "Unknown"
+                detailed_steps.append(match)
+
+        try:
+            total_time = sum(float(s.get('operationTime', 0)) for s in detailed_steps)
+        except ValueError:
+            total_time = 0
+
+        order = {
+            "product": o['product'],
+            "amount": o['amount'],
+            "status": o['status'],
+            "routingSteps": detailed_steps,
+            "totalTime": total_time
+        }
+
+        dynamic_orders.append(order)
 
     return render_template('production_orders.html', orders=dynamic_orders, data=metrics)
 
-#Production Orders Index
-@app.route('/')
-def index():
-    try:
-        with open(orders_dir) as f:
-            orders = json.load(f)
-    except:
-        orders = []
-
-    try:
-        with open(routing_steps_dir) as f:
-            routing_steps = json.load(f)
-    except:
-        routing_steps = []
-
-    print("Loaded orders:", orders)
-
-    return render_template('production_orders.html', orders=orders, routing_steps=routing_steps)
 
 
 #Routing Steps
@@ -103,6 +114,7 @@ def create_routing():
     except:
         centers = []
 
+            
     return render_template('create_routing.html', steps=steps, centers=centers)
 
 
@@ -197,6 +209,14 @@ def submit_routing():
         "operationUnit": request.form['operationUnit'],
         "workCenterID": request.form['workCenterID']
     }
+    try:
+        with open(workcenter_dir) as f:
+            centers = json.load(f)
+            match = next((c for c in centers if c['id'] == new_step['workCenterID']), None)
+            new_step['workCenterName'] = match['name'] if match else "Unknown"
+    except Exception as e:
+        print(f"Error enriching work center name: {e}")
+        new_step['workCenterName'] = "Unknown"
 
     try:
         if os.path.exists(routing_steps_dir):
@@ -215,12 +235,14 @@ def submit_routing():
         print(f"Step Number: {new_step['stepNumber']}")
         print(f"Operation Time: {new_step['operationTime']} {new_step['operationUnit']}")
         print(f"Work Center ID: {new_step['workCenterID']}")
+        print(f"Work Center Name: {new_step['workCenterName']}")
         print(linebreakEnd)
 
     except Exception as e:
         print(f"Error saving routing step: {e}")
 
     return redirect('/create-routing')
+
 
 
 

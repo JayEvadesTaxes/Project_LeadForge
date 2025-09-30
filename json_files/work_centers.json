@@ -1,20 +1,20 @@
 [
   {
-    "id": "CR01",
-    "name": "EUV Lithogrpahy",
-    "operationType": "Patterning",
-    "maxCapacity": 2
-  },
-  {
-    "id": "CR02",
-    "name": "Chemical Vapor Deposition",
-    "operationType": "Depositioning",
+    "id": "CW01",
+    "name": "Euv Topology",
+    "operationType": "Production",
     "maxCapacity": 5
   },
   {
-    "id": "CR03",
-    "name": "Atomic Layer Deposition",
-    "operationType": "Depositioning",
-    "maxCapacity": 6
+    "id": "CW02",
+    "name": "Auto-Qualifiers",
+    "operationType": "Quality Control",
+    "maxCapacity": 5
+  },
+  {
+    "id": "CW03",
+    "name": "Backpacker-v1.0",
+    "operationType": "Packaging",
+    "maxCapacity": 2
   }
 ]
