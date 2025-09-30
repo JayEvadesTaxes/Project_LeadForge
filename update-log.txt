@@ -83,3 +83,20 @@ steps that were selected
 There are plans in the future to allow the same thing for creating routing steps
 and creating work centers and displaying them in the terminal in future updates.
 -Removed Herobrine
+
+[9/28/25] v0.7
+-Improved terminal logs, now displays the creation and removal of Routing Steps and Work Centers.
+-Re-added exe file
+-HTML now automatically opens when the program is opened
+-Certain bug fixes that will take too long to write down here
+-Removed Herobrine
+
+[9/30/25] v0.7.1
+-Changed the background of the selection of Routing Steps during creation of Production Order to white
+It should be cleaner and easier to read and select now.
+-Added more information to routing steps in production orders.
+    >Calculate total lead time
+    >Show each steps in detail with parameters such as WorkCenterID, WorkCenterName, and Time
+-Changed background highlight of table headers to red
+-Removed "Selecting" text from the columns of the table in Routing Steps and Work Centers
+-Removed Herobrine 

@@ -5,7 +5,7 @@ a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[('templates', 'templates'), ('static', 'static'), ('json_files', 'json_files')],
+    datas=[('templates', 'templates'), ('static', 'static'), ('json_files/orders.json', 'json_files'), ('json_files/routing_steps.json', 'json_files'), ('json_files/work_centers.json', 'json_files'), ('json_files/graphics_card.json', 'json_files'), ('json_files/silicon_wafer.json', 'json_files')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

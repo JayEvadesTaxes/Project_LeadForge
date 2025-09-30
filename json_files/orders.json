@@ -1,11 +1,21 @@
 [
   {
-    "product": "Sliksong",
-    "amount": 6,
-    "status": "Active",
+    "product": "Silicon Wafer",
+    "amount": 2,
+    "status": "Delayed",
     "routingSteps": [
       "CR01",
-      "CR02"
+      "CR02",
+      "CR03",
+      "CR04"
+    ]
+  },
+  {
+    "product": "GPU",
+    "amount": 1,
+    "status": "NIE",
+    "routingSteps": [
+      "CR01"
     ]
   }
 ]

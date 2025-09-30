@@ -12,5 +12,19 @@
     "operationUnit": "minutes",
     "workCenterID": "CW02",
     "workCenterName": "Auto-Qualifiers"
+  },
+  {
+    "stepNumber": "CR03",
+    "operationTime": "5",
+    "operationUnit": "seconds",
+    "workCenterID": "CW03",
+    "workCenterName": "Backpacker-v1.0"
+  },
+  {
+    "stepNumber": "CR04",
+    "operationTime": "14",
+    "operationUnit": "minutes",
+    "workCenterID": "CW03",
+    "workCenterName": "Backpacker-v1.0"
   }
 ]
