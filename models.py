@@ -9,7 +9,7 @@ class WorkCenter:
     def to_dict(self):
         return {
             "name": self.id,
-            "maxCapacity": self.maxCapacity,
+            "maxCapacdity": self.maxCapacity,
             "operationType": self.operationType
         }
 class RoutingSteps: 

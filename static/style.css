@@ -1,7 +1,108 @@
+.fixed-header {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #000000;
+  color: #ffffff;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  display: flex;
+
+  /*Center fix thing, Idk lmao*/
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+
+.header-content h1 {
+  font-family: 'Poppins', 'Inter', sans-serif;
+  font-size: 1.5rem;
+  margin: 0;
+}
+/*
+╔══ ❀•°❀°•❀ ══╗
+      BODY
+╚══ ❀•°❀°•❀ ══╝
+(wouldn't it make more sense to put the HEADER CSS code first?
+why the hell are you putting the body up here???
+you gotta fix this next update
+you're stupid, seriously. This is just dumb)
+
+(Shut tf up man. You're the only one coding this you delusional dipshit)
+
+(oh right)
+*/
+
+body {
+    background-color: #ededf3;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding: 120px;
+    padding-top: 120px;
+}
+
+
+.menu-toggle {
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.title {
+  margin: 0;
+}
+/*
+╔══ ❀•°❀°•❀ ══╗
+     SIDEBAR
+╚══ ❀•°❀°•❀ ══╝
+*/
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 3.5rem;
+  left: 0;
+  background-color: #000000;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 1rem;
+}
+
+.sidebar a {
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  color: #ccc;
+  display: block;
+  transition: 0.2s;
+}
+
+.sidebar a:hover {
+  background-color: #444;
+  color: white;
+}
+
+.main-content {
+  margin-left: 0;
+  padding: 2rem;
+  transition: margin-left 0.3s;
+}
+
+/*
+╔══ ❀•°❀°•❀ ══╗
+     HEADERS
+╚══ ❀•°❀°•❀ ══╝
+*/
 
 .header {
-  background-color: rgba(255, 255, 255, 0.75); /* semi-transparent white */
-  color: #333; /* dark text for contrast */
+  background-color: #282843	;
+  color: #e0e0e0;
   padding: 20px;
   text-align: center;
   border-bottom: 2px solid #444;
@@ -10,42 +111,6 @@
   margin: 20px auto;
 }
 
-.navbar ul {
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  gap: 20px;
-  background-color: #f0f0f0;
-  border-bottom: 2px solid #ccc;
-}
-
-.navbar li a {
-  text-decoration: none;
-  padding: 10px 20px;
-  display: block;
-  color: #333;
-  font-weight: bold;
-}
-
-.navbar li a:hover {
-  background-color: #ddd;
-  border-radius: 8px;
-}
-html, body {
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    min-height: 100vh;
-    padding: 20px;
-}
 .tile-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -75,17 +140,6 @@ details summary {
 details[open] summary {
   background-color: #e0e0e0;
 }
-.routing-checkboxes label {
-  font-size: 0.95rem;
-  line-height: 1.4;
-  padding: 4px 8px;
-  border-radius: 4px;
-  background: rgba(255, 255, 255);
-}
-.routing-checkboxes input[type="checkbox"] {
-  transform: scale(1.2);
-  margin-right: 8px;
-}
 
 .step-tag {
   background-color: #eee;
@@ -102,30 +156,32 @@ details[open] summary {
 table {
   width: 100%;
   border-collapse: collapse;
-  font-family: sans-serif;
-  background-color: #fff;
+  background-color: #a9a9a9;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   margin-top: 20px;
   border-radius: 8px;
   overflow: hidden;
+  font-family: 'Inter', 'Segoe UI', sans-serif; 
+  border: 1px solid #4e4e6a;
 }
 
 table th {
-  background-color: #949494; 
-  color: #333333;          
+  font-family: 'Inter';
+  background-color: #6f6f6f		; 
+  color: #ffffff;          
   font-weight: bold;
-  text-align: center;
 }
 
 th, td {
+  font-family: 'Poppins';
   padding: 12px 16px;
   border-bottom: 1px solid #ddd;
   vertical-align: middle;
   border: 1px solid #ccc;
-
+}
 th:nth-child(1), td:nth-child(1) {
   text-align: center;
-  width: 40%;
+  width: 10%;
 }
 
 th:nth-child(2), td:nth-child(2) {
@@ -134,19 +190,89 @@ th:nth-child(2), td:nth-child(2) {
 }
 
 th:nth-child(3), td:nth-child(3) {
-  text-align: right;
-  width: 40%;
+  text-align: middle;
+  width: 20%;
 }
 tr {
   height: 60px;
 }
 tr:hover {
-  background-color: #fd9c9c;
+  background-color: #a99cfd;
 }
-}
+
 th:hover {
-  background-color: #fd9c9c;
+  background-color: #a99cfd;
 }
+/*
+╔══ ❀•°❀°•❀ ══╗
+     BUTTONS
+╚══ ❀•°❀°•❀ ══╝
+*/
+
+.add-button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.remove-button {
+  background-color: #af4c4c; 
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+/*
+╔══ ❀•°❀°•❀ ══╗
+    CHECKBOXES
+╚══ ❀•°❀°•❀ ══╝
+*/
+
+.routing-checkboxes label {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255);
+}
+.routing-checkboxes input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-right: 8px;
+}
+/*
+╔══ ❀•°❀°•❀ ══╗
+   INPUT BOXES
+╚══ ❀•°❀°•❀ ══╝
+*/
+
+input[type="text"], input[type="number"], select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 1rem;
+}
+
 
 /*
 ╔══ ❀•°❀°•❀ ══╗
