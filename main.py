@@ -7,6 +7,7 @@ from flask import Flask, render_template, jsonify, url_for, request, redirect
 import json
 import webbrowser
 import sys
+import flaskwebgui
 
 from models import WorkCenter, RoutingSteps, ProductionOrder
 
@@ -33,12 +34,15 @@ static_dir = os.path.join(base_path, 'static')
 orders_dir = os.path.join(base_path, 'json_files', 'orders.json')
 routing_steps_dir = os.path.join(base_path, 'json_files', 'routing_steps.json')
 workcenter_dir = os.path.join(base_path, 'json_files', 'work_centers.json')
+
 #Application
 app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
+#Defenitley didn't take this code from the FLux-1.0.0 program from Jan Rahye's github🙏
+gui = flaskwebgui.FlaskUI(app=app, server="flask", width=800, height=600)
 
-#Production Orders and Dashboard
+#Production Orders
 @app.route('/')
-def dashboard():
+def create_productionorders():
     metrics = {
         "defective_units": 3,
         "yield_rate": 97.5
@@ -120,7 +124,7 @@ def dashboard():
 
 #Routing Steps
 @app.route('/create-routing')
-def create_routing():
+def create_routingsteps():
     try:
         with open(routing_steps_dir) as f:
             steps = json.load(f)
@@ -134,7 +138,7 @@ def create_routing():
         centers = []
 
             
-    return render_template('create_routing.html', steps=steps, centers=centers)
+    return render_template('routing_steps.html', steps=steps, centers=centers)
 
 
 #Work Centers
@@ -146,7 +150,7 @@ def create_workcenter():
     except:
         centers = []
 
-    return render_template('create_workcenter.html', centers=centers)
+    return render_template('work_centers.html', centers=centers)
 
 #######################################################
 
@@ -299,6 +303,8 @@ def remove_routing():
 #Work Center Submissions
 @app.route('/submit-workcenter', methods=['POST'])
 def submit_workcenter():
+    print("DEBUG: Incoming form data →", request.form)
+
     new_center = {
         "id": request.form['centerId'],
         "name": request.form['centerName'],
@@ -373,7 +379,7 @@ def clearTerminal():
     else:
         os.system('clear')#macOS/Linux
 
-# UNUSED FOR NOW #
+# My guy, this code snippet's been unusued since v0.5, you gotta remove this man #
 '''
 def calculate_cost(order, cost_per_minute=1.5):
     if not isinstance(order.routingSteps, list):
@@ -419,7 +425,7 @@ print("""
 /____/\__/\_,_/\_,_/_/  \___/_/  \_, /\__/ 
                                 /___/     
 
-        [version 0.7.1]          
+        [version 0.8]          
 """)
 sleep(1)
 
@@ -438,7 +444,12 @@ print("RUN THIS APP VIA YOUR BROWSER: http://127.0.0.1:5000/")
 print("CTRL+C TO STOP THE SERVER!")
 print(RESET)
 
+#Or this either, trust :pray:
 if __name__ == '__main__':
-    url = "http://127.0.0.1:5000/"
-    webbrowser.open_new_tab(url)
-    app.run(debug=False, use_reloader = False)
+    enable_gui = False
+    if enable_gui:
+        gui.run()
+    else:
+        url = "http://127.0.0.1:5000/"
+        webbrowser.open_new_tab(url)
+        app.run(debug=True)

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<header class="fixed-header">
+    <div class="menu-toggle" onclick="toggleSidebar()">
+    
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <rect y="4" width="24" height="2" rx="1" fill="#ffffff"/>
+        <rect y="11" width="24" height="2" rx="1" fill="#ffffff"/>
+        <rect y="18" width="24" height="2" rx="1" fill="#ffffff"/>
+    </svg>
+
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <a href="/create-workcenter">Work Centers</a>
+        <a href="/create-routing">Routing Steps</a>
+        <a href="/">Production Orders</a>
+    </div>
+
+  <div class="header-content">
+    <h1>Project LeadForge</h1>
+  </div>
+
+</header>
+<!--
+╔══ ❀•°❀°•❀ ══╗
+      HEAD
+╚══ ❀•°❀°•❀ ══╝
+-->
+<head>
+    <title>Project LeadForge - Routing Steps</title>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<!--
+╔══ ❀•°❀°•❀ ══╗
+      BODY
+╚══ ❀•°❀°•❀ ══╝
+-->
+
+<body>
+
+    <header class = "header">
+        <h2>Create New Routing Step</h2>
+    </header>
+
+<form action="/submit-routing" method="POST">
+  <div class="form-table-container">
+    <table class="form-table">
+      <tbody>
+        <tr>
+          <td>Step Number:</td>
+          <td><input type="number" name="stepNumber" min="1" step="1" required /></td>
+        </tr>
+
+        <tr>
+          <td>Operation Time:</td>
+          <td>
+            <input type="number" name="operationTime" min="1" step="1" required />
+            <select name="operationUnit" required>
+              <option value="seconds">Seconds</option>
+              <option value="minutes">Minutes</option>
+              <option value="hours">Hours</option>
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Work Center:</td>
+          <td>
+            <select name="workCenterID" required>
+              {% for center in centers %}
+              <option value="{{ center.id }}">{{ center.id }} — {{ center.name }}</option>
+              {% endfor %}
+            </select>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+        <tr>
+          <td colspan="2" style="text-align: center;">
+            <button type="submit" class = "add-button">Add Routing Step</button>
+          </td>
+        </tr>
+  </div>
+</form>
+
+
+<hr>
+
+    <header class="header">
+        <h2>Existing Routing Steps</h2>
+    </header>
+
+    <form action="/remove-routing" method="POST">
+    <button type="submit" class = "remove-button">Remove Selected Routing Steps</button>
+    <table>
+        <tr>
+            <th></th>
+            <th>Step Number</th>
+            <th>Operation Time</th>
+            <th>Work Center ID</th>
+            <th>Work Center Name</th>
+        </tr>
+        {% for step in steps %}
+        <tr>
+            <td><input type="checkbox" name="remove_routing_ids" value="{{ loop.index0 }}" style="transform: scale(1.5); margin: 6px;"></td>
+            <td>{{ step.stepNumber }}</td>
+            <td>{{ step.operationTime }} {{step.operationUnit}}</td>
+            <td>{{ step.workCenterID }}</td>
+            <td>
+                {% set match = centers | selectattr("id", "equalto", step.workCenterID) | list %}
+                {{ match[0].name if match and match[0] is defined else "Unknown" }}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    </form>
+
+    
+</body>
+</html>

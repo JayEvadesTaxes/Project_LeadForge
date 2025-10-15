@@ -1,21 +1,20 @@
 [
   {
-    "product": "Silicon Wafer",
-    "amount": 2,
+    "product": "GPU",
+    "amount": 20,
     "status": "Delayed",
     "routingSteps": [
-      "CR01",
-      "CR02",
-      "CR03",
-      "CR04"
+      "1"
     ]
   },
   {
-    "product": "GPU",
-    "amount": 1,
-    "status": "NIE",
+    "product": "Silicon Wafer",
+    "amount": 12,
+    "status": "On Hold",
     "routingSteps": [
-      "CR01"
+      "1",
+      "2",
+      "3"
     ]
   }
 ]

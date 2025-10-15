@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<header class="fixed-header">
+    <div class="menu-toggle" onclick="toggleSidebar()">
+    
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <rect y="4" width="24" height="2" rx="1" fill="#ffffff"/>
+        <rect y="11" width="24" height="2" rx="1" fill="#ffffff"/>
+        <rect y="18" width="24" height="2" rx="1" fill="#ffffff"/>
+    </svg>
+
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <a href="/create-workcenter">Work Centers</a>
+        <a href="/create-routing">Routing Steps</a>
+        <a href="/"> Production Orders</a>
+    </div>
+
+  <div class="header-content">
+    <h1>Project LeadForge</h1>
+  </div>
+
+</header>
+<!--
+╔══ ❀•°❀°•❀ ══╗
+      HEAD
+╚══ ❀•°❀°•❀ ══╝
+-->
+<head>
+    <title>Project LeadForge - Work Centers</title>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<!--
+╔══ ❀•°❀°•❀ ══╗
+      BODY
+╚══ ❀•°❀°•❀ ══╝
+-->
+<body>
+
+    <header class ='header'>
+        <h2>Create New Work Center</h2>
+    </header>
+
+<form action="/submit-workcenter" method="POST">
+  <div class="form-table-container">
+    <table class="form-table">
+      <tbody>
+        <tr>
+          <td>Work Center ID:</td>
+          <td><input type="text" name="centerId" required /></td>
+        </tr>
+        <tr>
+          <td>Work Center Name:</td>
+          <td><input type="text" name="centerName" required /></td>
+        </tr>
+        <tr>
+          <td>Operation Type:</td>
+          <td><input type="text" name="operationType" required /></td>
+        </tr>
+        <tr>
+          <td>Max Capacity:</td>
+          <td><input type="number" name="maxCapacity" min="1" required /></td>
+        </tr>
+      </tbody>
+    </table>
+        <tr>
+          <td colspan="2" style="text-align: center;">
+            <button type="submit" class = "add-button">Add Work Center</button>
+          </td>
+        </tr>
+  </div>
+</form>
+
+
+
+<hr>
+
+    <header class = 'header'>
+        <h2>Existing Work Centers</h2>
+    </header>
+
+    <form action="/remove-workcenters" method="POST">
+    <button type="submit" class = "remove-button">Remove Selected Work Centers</button>
+    <table>
+        <tr>
+        <th></th>
+        <th>Work Center Name</th>
+        <th>Work Center ID</th>
+        <th>Operation Type</th>
+        <th>Max Capacity</th>
+        </tr>
+        {% for center in centers %}
+        <tr>
+        <td><input type="checkbox" name="remove_center_ids" value="{{ loop.index0 }}"style="transform: scale(1.5); margin: 6px;"></td>
+        <td>{{ center.name }}</td>
+        <td>{{ center.id }}</td>
+        <td>{{ center.operationType }}</td>
+        <td>{{ center.maxCapacity }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </form>

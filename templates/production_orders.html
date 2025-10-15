@@ -1,28 +1,45 @@
 <!DOCTYPE html>
 <html>
+
+<header class="fixed-header">
+    <div class="menu-toggle" onclick="toggleSidebar()">
+    
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <rect y="4" width="24" height="2" rx="1" fill="#ffffff"/>
+        <rect y="11" width="24" height="2" rx="1" fill="#ffffff"/>
+        <rect y="18" width="24" height="2" rx="1" fill="#ffffff"/>
+    </svg>
+
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <a href="/create-workcenter">Work Centers</a>
+        <a href="/create-routing">Routing Steps</a>
+        <a href="/">Production Orders</a>
+    </div>
+
+  <div class="header-content">
+    <h1>Project LeadForge</h1>
+  </div>
+
+</header>
 <!--
 ╔══ ❀•°❀°•❀ ══╗
       HEAD
 ╚══ ❀•°❀°•❀ ══╝
 -->
 <head>
-    <title>Manufacturing Dashboard</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Project LeadForge - Production Orders</title>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <!--
 ╔══ ❀•°❀°•❀ ══╗
       BODY
 ╚══ ❀•°❀°•❀ ══╝
 -->
-<nav class="navbar">
-  <ul>
-    <li><a href="/">Production Orders</a></li>
-    <li><a href="/create-routing">Routing Steps</a></li>
-    <li><a href="/create-workcenter">Work Centers</a></li>
-  </ul>
-</nav>
-
 
 <body>
 
@@ -66,7 +83,7 @@
 
     
     
-    <button type="submit">Submit Order</button>
+    <button type="submit" class = "add-button">Submit Order</button>
   </form>
 
   <header class="header">
@@ -75,66 +92,59 @@
 
   <form action="/remove-orders" method="POST">
     <br>
-    <button type="submit">Remove Selected Orders</button>
+    <button type="submit" class = "remove-button">Remove Selected Orders</button>
     <table>
       <tr>
         <th></th>
-        <th>Routing Steps</th>
         <th>Product Name</th>
         <th>Amount</th>
         <th>Status</th>
+        <th>Routing Steps</th>
       </tr>
       {% for order in orders %}
       <tr>
         <td><input type="checkbox" name="remove_ids" value="{{ loop.index0 }}"style="transform: scale(1.5); margin: 6px;"></td>
-        
-        <td>
-          {% if order.routingSteps and order.routingSteps | length > 0 %}
-          <details>
-            <summary style="cursor: pointer; font-weight: bold;">View Steps</summary>
-            <div style="margin-top: 6px;">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Step</th>
-                    <th>Time</th>
-                    <th>Unit</th>
-                    <th>Work Center</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for step in order.routingSteps %}
-                  <tr>
-                    <td>{{ step.stepNumber }}</td>
-                    <td>{{ step.operationTime }}</td>
-                    <td>{{ step.operationUnit }}</td>
-                    <td>{{ step.workCenterName }}</td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-              <p><strong>Estimated Lead Time:</strong> {{ order.totalTime }}</p>
-            </div>
-          </details>
-          {% else %}
-            <em>No routing steps found</em>
-          {% endif %}
-        </td>
-
-
-
         <td>{{ order.product }}</td>
         <td>{{ order.amount }}</td>
         <td class="status {{ order.status | lower | replace(' ', '-') }}">{{ order.status }}</td>
+        <td>
+            {% if order.routingSteps and order.routingSteps | length > 0 %}
+            <details>
+              <summary style="cursor: pointer; font-weight: bold;">View Steps</summary>
+              <div style="margin-top: 6px;">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Step</th>
+                      <th>Time</th>
+                      <th>Unit</th>
+                      <th>Work Center</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for step in order.routingSteps %}
+                    <tr>
+                      <td>{{ step.stepNumber }}</td>
+                      <td>{{ step.operationTime }}</td>
+                      <td>{{ step.operationUnit }}</td>
+                      <td>{{ step.workCenterName }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+                <p><strong>Estimated Lead Time:</strong> {{ order.totalTime }}</p>
+              </div>
+            </details>
+            {% else %}
+              <em>No routing steps found</em>
+            {% endif %}
+          </td>
+
       </tr>
       {% endfor %}
       
     </table>
   </form>
-
-<div class="char-container">
-  <canvas id="donutChart"></canvas>
-</div>
 
 </body>
 <!--

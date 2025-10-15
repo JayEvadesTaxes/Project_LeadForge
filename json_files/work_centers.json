@@ -13,8 +13,8 @@
   },
   {
     "id": "CW03",
-    "name": "Backpacker-v1.0",
+    "name": "PackitUp-v1.2",
     "operationType": "Packaging",
-    "maxCapacity": 2
+    "maxCapacity": 60
   }
 ]
