@@ -100,3 +100,15 @@ It should be cleaner and easier to read and select now.
 -Changed background highlight of table headers to red
 -Removed "Selecting" text from the columns of the table in Routing Steps and Work Centers
 -Removed Herobrine 
+
+[10/15/25] v0.8
+-UI Overhaul. Sleek, modern, and cleaner.
+-Repositioned View Routing Steps in Production Order to the far right of the table
+-Moved Top navbar into a Sidebar
+-Added more padding to the borders
+-Input box cleanup
+-Now using Inter Font for some text elements
+-Routing Steps number now take integers ONLY (1,2,3,etc)
+-Removed .exe file and replaced with flaskwebgui
+(can only be toggled in source code)
+-Removed Herobrine
